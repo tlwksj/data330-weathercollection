@@ -23,7 +23,7 @@ jobs:
             any::readr
 
       - name: Run weather script
-        run: Rscript get_emmitsburg_temp.R
+        run: Rscript get_emmitsburg_weather.R
 
       - name: Commit updated CSV
         run: | 
