@@ -11,7 +11,7 @@ temp_c <- data$properties$temperature$value
 temp_f <- temp_c * 9/5 +32
 
 wind_speed_km <- data$properties$windSpeed$value
-wind_speed_mi <- round(wind_speed_km / 1.6,3)
+wind_speed_mi <- round(ifelse(is.null(wind_speed_km), 0, wind_speed_km) / 1.6,3)
 
 df <- data.frame(
   time = format(Sys.time(), tz = "America/New_York", usetz = TRUE),
@@ -31,3 +31,4 @@ if(file.exists(file)){
 } else{
   write_csv(df,file)
 }
+
