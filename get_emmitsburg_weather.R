@@ -33,7 +33,5 @@ if(status_code(res) == 200){
     write_csv(df,file)
   }
 }
-else {
-message("API call failed")
-}
+
 
