@@ -8,10 +8,11 @@ res <- GET("https://api.weather.gov/stations/KHGR/observations/latest")
 if(status_code(res) == 200){
   data <- fromJSON("https://api.weather.gov/stations/KHGR/observations/latest")
   
-  temp_c <- data$properties$temperature$value
+  temp_c <- ifelse(is.null(data$properties$temperature$value), 0, data$properties$temperature$value)
   temp_f <- temp_c * 9/5 +32
+
   
-  wind_speed_km <- data$properties$windSpeed$value
+  wind_speed_km <- ifelse(is.null(data$properties$windSpeed$value), 0, data$properties$windSpeed$value)
   wind_speed_mi <- round(ifelse(is.null(wind_speed_km), 0, wind_speed_km) / 1.6,3)
   
   df <- data.frame(
@@ -33,5 +34,6 @@ if(status_code(res) == 200){
     write_csv(df,file)
   }
 }
+
 
 
