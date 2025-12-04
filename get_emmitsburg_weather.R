@@ -16,7 +16,7 @@ if(status_code(res) == 200){
   wind_speed_mi <- round(ifelse(is.null(wind_speed_km), 0, wind_speed_km) / 1.6,3)
   
   df <- data.frame(
-    time = format(Sys.time(), tz = "America/New_York", usetz = TRUE),
+    time = Sys.time(),
     station = "KHGR",
     temp_c = temp_c,
     temp_f = temp_f,
@@ -34,6 +34,7 @@ if(status_code(res) == 200){
     write_csv(df,file)
   }
 }
+
 
 
 
